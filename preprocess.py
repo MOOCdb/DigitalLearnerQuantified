@@ -15,36 +15,36 @@ def preprocess(dbName, userName, passwd, host, port, dirName, startDate, current
 
 # fileName, wordsToBeReplaced, wordsToReplace
     preprocessing_files = [
-        [
-         'create_longitudinal_features.sql',
-         ['moocdb'],
-         [dbName]
-        ],
-        #TODO: MAKE REPEATABLE:
-        [
-         'populate_longitudinal_features.py',
-         [],
-         []
-        ],
+        #[
+         #'create_longitudinal_features.sql',
+         #['moocdb'],
+         #[dbName]
+        #],
+        ##TODO: MAKE REPEATABLE:
+        #[
+         #'populate_longitudinal_features.py',
+         #[],
+         #[]
+        #],
 
-        [
-         'create_models_table.sql',
-         ['moocdb'],
-         [dbName]
-         ],
+        #[
+         #'create_models_table.sql',
+         #['moocdb'],
+         #[dbName]
+         #],
 
-        [
-         'create_experiments_table.sql',
-         ['moocdb'],
-         [dbName]
-        ],
+        #[
+         #'create_experiments_table.sql',
+         #['moocdb'],
+         #[dbName]
+        #],
 
 
-        [
-         'create_user_longitudinal_feature_values.sql',
-         ['moocdb'],
-         [dbName]
-        ],
+        #[
+         #'create_user_longitudinal_feature_values.sql',
+         #['moocdb'],
+         #[dbName]
+        #],
 
         [
          'users_populate_dropout_week.sql',

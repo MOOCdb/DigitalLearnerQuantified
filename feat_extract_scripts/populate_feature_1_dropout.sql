@@ -5,8 +5,8 @@
 -- Edited by Colin Taylor on Nov 27, 2013 to include missing last submission id
 -- Meant to be run after users_populate_dropout_week.sql is run
 
-TRUNCATE TABLE `moocdb`.user_longitudinal_feature_values;
-ALTER TABLE `moocdb`.user_longitudinal_feature_values AUTO_INCREMENT = 1;
+-- TRUNCATE TABLE `moocdb`.user_longitudinal_feature_values;
+-- ALTER TABLE `moocdb`.user_longitudinal_feature_values AUTO_INCREMENT = 1;
 
 DROP PROCEDURE IF EXISTS `moocdb`.compute_feature_1;
 

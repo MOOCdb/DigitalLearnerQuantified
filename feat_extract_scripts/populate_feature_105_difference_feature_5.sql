@@ -12,7 +12,8 @@ SELECT 105,
 	features2.longitudinal_feature_week,
 	-- features.longitudinal_feature_value,
 	-- features2.longitudinal_feature_value,
-	features2.longitudinal_feature_value  / features.longitudinal_feature_value,
+  -- added this to fix divide by zero error
+	IFNULL(features2.longitudinal_feature_value  / features.longitudinal_feature_value,0),
     @current_date
 FROM `moocdb`.user_longitudinal_feature_values AS features,
 	`moocdb`.user_longitudinal_feature_values AS features2,

@@ -37,6 +37,10 @@ def extractFeature(dbName, userName, passwd, host, port, startDate, currentDate,
         return False
     else:
         return True
+#import getpass
+#extractFeature('201x_2013_spring', 'sebboyer', getpass.getpass(),
+#'alfa6.csail.mit.edu', 3306, '2013-04-09 00:00:00', '2015-06-22 16:00:00',
+#    'feat_extract_scripts', 112, 1800)
 
 def extractAllFeatures(dbName, userName, passwd, host, port, startDate,
                         currentDate,dirName, featuresToSkip, timeout):

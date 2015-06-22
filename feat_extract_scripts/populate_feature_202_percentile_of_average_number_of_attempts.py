@@ -19,7 +19,9 @@ def main(conn, conn2, dbName, startDate, currentDate, parent_conn = None):
     cursor.execute(sql)
 
     week_values = {}
+    data = []
     for [user_id, week, value] in cursor:
+        data.append((user_id, week, value))
         if week in week_values:
             week_values[week].append(value)
         else:
@@ -27,9 +29,9 @@ def main(conn, conn2, dbName, startDate, currentDate, parent_conn = None):
 
 
     data_to_insert = []
-    for [user_id, week, value] in cursor:
+    for i, [user_id, week, value] in enumerate(data):
         data_to_insert.append((user_id, week,
-            percentileofscore(week_values[week])),currentDate)
+            percentileofscore(week_values[week], value),currentDate))
     cursor.close()
 
     sql = "INSERT INTO `%s`.user_longitudinal_feature_values(longitudinal_feature_id, user_id," % dbName

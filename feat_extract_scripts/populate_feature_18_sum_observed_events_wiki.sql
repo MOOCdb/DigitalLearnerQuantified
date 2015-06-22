@@ -25,7 +25,7 @@ INNER JOIN `moocdb`.resource_types AS resource_types
  ON resource_types.resource_type_id = resources.resource_type_id
 WHERE users.user_dropout_week IS NOT NULL
 	-- AND users.user_id < 100
-	AND resource_types.resource_type_id = 2 -- 2 is wiki
+	AND resource_types.resource_type_id = 2
 	AND FLOOR((UNIX_TIMESTAMP(observed_events.observed_event_timestamp)
 			- UNIX_TIMESTAMP('2012-03-05 12:00:00')) / (3600 * 24 * 7)) < 15
     AND observed_events.validity = 1

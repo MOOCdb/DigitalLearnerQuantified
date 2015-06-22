@@ -1,5 +1,7 @@
 import preprocess as pre
 import feature_extraction as fe
+import getpass
+import datetime
 
 def run_preprocess(dbName, userName, passwd, dbHost, dbPort, startDate, currentDate):
     ## Preprocessing the MOOCdb database before feature extraction (only once)
@@ -20,7 +22,7 @@ def run_feature_extraction(dbName, userName, passwd, dbHost,
 
 def main(dbName=None, userName=None, passwd=None, dbHost=None,
         dbPort=None,startDate=None,currentDate=None,
-        features_to_skip=None, timeout = None):
+        features_to_skip=None, timeout = None, preprocess = False):
     if not dbHost:
         dbHost = 'alfa6.csail.mit.edu'
     if not dbPort:
@@ -39,15 +41,18 @@ def main(dbName=None, userName=None, passwd=None, dbHost=None,
         print "currentDate: ",currentDate
     if not features_to_skip:
         ##3,4,5,14,103,104,105,201,301 depend on collaborations table- not populated yet
-        features_to_skip = [3,4,5,14, 103,104,105, 201, 301, 302]
+        features_to_skip = [3,4,5,14, 103,104,105, 201, 301,302]
     if not timeout:
         ##set how long you're willing to wait for a feature (in seconds)
         timeout = 1800
 
-    #run_preprocess(dbName, userName, passwd, dbHost, dbPort, startDate, currentDate)
+    if preprocess:
+        run_preprocess(dbName, userName, passwd, dbHost, dbPort, startDate, currentDate)
 
     run_feature_extraction(dbName, userName, passwd, dbHost,
             dbPort,startDate,currentDate, features_to_skip, timeout)
 
 if __name__ == "__main__":
-    main()
+    main(dbName='201x_2013_spring', timeout = 600, preprocess = False,
+        features_to_skip = [3,4,5,14,17,103,104,105, 201,204,205,206,207, 301,302]
+            )

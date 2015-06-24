@@ -16,6 +16,9 @@ import MySQLdb as mdb
 import math
 import os
 import time as t
+from sql_functions import *
+#make this as high as possible until MySQL quits on you
+BLOCK_SIZE = 50
 
 
 def main(conn, conn2, dbName,startDate, currentDate, parent_conn = None):
@@ -121,9 +124,8 @@ def main(conn, conn2, dbName,startDate, currentDate, parent_conn = None):
         date_of_extraction)
         VALUES (13, %s, %s, %s, %s)
         '''
-
     cursor = conn.cursor()
-    cursor.executemany(sql, data_to_insert)
+    block_sql_command(conn, cursor, sql, data_to_insert, BLOCK_SIZE)
     cursor.close()
     conn.commit()
 

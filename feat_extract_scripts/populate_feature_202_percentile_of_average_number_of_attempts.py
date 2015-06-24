@@ -5,7 +5,9 @@ Feature 202- A student's average number of attempts as compared with other stude
 Requires that populate_feature_9_average_number_of_attempts.sql has already been run!
 '''
 
+from sql_functions import *
 from  scipy.stats import percentileofscore
+BLOCK_SIZE=50
 
 def main(conn, conn2, dbName, startDate, currentDate, parent_conn = None):
     cursor = conn.cursor()
@@ -44,7 +46,7 @@ def main(conn, conn2, dbName, startDate, currentDate, parent_conn = None):
                 '''
 
     cursor = conn.cursor()
-    cursor.executemany(sql, data_to_insert)
+    block_sql_command(conn, cursor, sql, data_to_insert, BLOCK_SIZE)
     cursor.close()
     conn.commit()
 

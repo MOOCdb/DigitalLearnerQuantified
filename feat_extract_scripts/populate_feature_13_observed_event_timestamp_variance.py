@@ -48,7 +48,7 @@ def main(conn, conn2, dbName,startDate, currentDate, parent_conn = None):
     cursor = conn.cursor()
 
     sql = '''SELECT COUNT(*)
-            FROM %s.observed_events AS observed_events''' % dbName
+            FROM `%s`.observed_events AS observed_events''' % dbName
     cursor.execute(sql)
     n = int(cursor.fetchone()[0])
     cursor.close()

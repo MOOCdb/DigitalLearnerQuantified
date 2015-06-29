@@ -11,18 +11,18 @@ def run_preprocess(dbName, userName, passwd, dbHost, dbPort, startDate, currentD
     print "done"
 
 def run_feature_extraction(dbName, userName, passwd, dbHost,
-        dbPort,startDate,currentDate,features_to_skip, timeout):
+        dbPort,startDate,currentDate,numWeeks, features_to_skip, timeout):
     ## Feature extraction
     print "Extracting features"
     featExtractDirName = 'feat_extract_scripts'
 
     fe.extractAllFeatures(dbName, userName, passwd, dbHost, dbPort, startDate,
-            currentDate,featExtractDirName, features_to_skip, timeout)
+            currentDate,numWeeks, featExtractDirName, features_to_skip, timeout)
     print "done"
 
 def main(dbName=None, userName=None, passwd=None, dbHost=None,
         dbPort=None,startDate=None,currentDate=None,
-        features_to_skip=None, timeout = None, preprocess = False):
+        features_to_skip=None, timeout = None, preprocess = False,numWeeks =None):
     if not dbHost:
         dbHost = 'alfa6.csail.mit.edu'
     if not dbPort:
@@ -55,11 +55,23 @@ def main(dbName=None, userName=None, passwd=None, dbHost=None,
             dbPort,startDate,currentDate,numWeeks,features_to_skip, timeout)
 
 if __name__ == "__main__":
+    '''
+    with collab:
+        3091x_2013_spring: start date: 2/5/2013 (19 weeks)
+        6002x_spring_2013: start date: 3/3/2013 (17 weeks)
+        6002x_fall_2012: start date: 9/5/2012 (15 weeks)
+
+    without:
+        201x_2013_spring: start date: 4/15/2013 (15 weeks)
+        203x_2013_3t: start date: 10/28/2013 (7 weeks)
+        1473x_2013_spring: start date: 2/12/2013 (14 weeks)
+        3091x_2012_fall: start date: 10/9/2012 (14 weeks)
+    '''
     main(dbName            = '6002x_spring_2013',
          timeout           = 600,
          preprocess        = True,
-         startDate         = '2013-04-09 00:00:00',
-         numWeeks          = 15,
+         startDate         = '2013-03-03 00:00:00',
+         numWeeks          = 17,
          features_to_skip  = [4,104,105,17,204,205,206,207,302]
          #features_to_skip = [3,4,5,14,17,103,104,105,201,204,205,206,207,301,302]
         )

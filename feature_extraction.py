@@ -19,7 +19,7 @@ def extractFeature(dbName, userName, passwd, host, port, startDate, currentDate,
         featureFile = this_file+'/'+featureFile
         toBeReplaced = ['moocdb', 'START_DATE_PLACEHOLDER',
                 'CURRENT_DATE_PLACEHOLDER', 'NUM_WEEKS_PLACEHOLDER']
-        toReplace = [dbName, startDate, currentDate, numWeeks]
+        toReplace = [dbName, startDate, currentDate, str(numWeeks)]
         success = runSQLFile(conn, featureFile, dbName, toBeReplaced,
                 toReplace, timeout)
         closeSQLConnection(conn)

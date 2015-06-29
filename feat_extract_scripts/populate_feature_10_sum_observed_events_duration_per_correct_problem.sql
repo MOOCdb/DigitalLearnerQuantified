@@ -24,6 +24,8 @@ FROM `moocdb`.user_longitudinal_feature_values AS user_longitudinal_feature_valu
 WHERE user_longitudinal_feature_values.user_id = user_longitudinal_feature_values2.user_id
 	AND user_longitudinal_feature_values.longitudinal_feature_week = user_longitudinal_feature_values2.longitudinal_feature_week
 	AND user_longitudinal_feature_values.longitudinal_feature_id = 8
-	AND user_longitudinal_feature_values2.longitudinal_feature_id = 2
+    AND user_longitudinal_feature_values.date_of_extraction >= @current_date
+    AND user_longitudinal_feature_values2.longitudinal_feature_id = 2
+    AND user_longitudinal_feature_values2.date_of_extraction >= @current_date
 ;
 

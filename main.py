@@ -54,7 +54,7 @@ def main(dbName=None, userName=None, passwd=None, dbHost=None,
 
 if __name__ == "__main__":
     main(dbName='6002x_spring_2013', timeout = 600, preprocess = True,
-        #features_to_skip = [3,4,5,14,17,103,104,105, 201,204,205,206,207, 301,302]
-        features_to_skip =
-        [1,2,6,7,8,10,11,12,13,15,16,17,18,105, 109,110,111,112,202,203,208,209,210,302]
+            startDate = '2013-04-09 00:00:00',
+        features_to_skip = [4,  104,105, 17,204,205,206,207,302]
+        #features_to_skip = [3,4,5,14,17,103,104,105,201,204,205,206,207,301,302],
             )

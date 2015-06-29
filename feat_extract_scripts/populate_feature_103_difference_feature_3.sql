@@ -28,3 +28,5 @@ WHERE
 	-- we are only interested in feature 3 (forum posts)
 	AND features.longitudinal_feature_id = 3
 	AND features2.longitudinal_feature_id = 3
+    AND features.date_of_extraction >= @current_date
+    AND features2.date_of_extraction >= @current_date

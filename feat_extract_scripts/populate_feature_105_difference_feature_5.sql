@@ -32,5 +32,7 @@ WHERE
 	-- we are only interested in feature 5 (average length of forum posts)
 	AND features.longitudinal_feature_id = 5
 	AND features2.longitudinal_feature_id = 5
+    AND features.date_of_extraction >= @current_date
+    AND features2.date_of_extraction >= @current_date
 
 -- LIMIT 1000

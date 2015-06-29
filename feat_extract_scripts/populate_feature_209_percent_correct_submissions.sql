@@ -19,4 +19,6 @@ WHERE features.user_id = features2.user_id
 	AND features.longitudinal_feature_week = features2.longitudinal_feature_week
 	AND features.longitudinal_feature_id = 7
 	AND features2.longitudinal_feature_id = 208
+    AND features.date_of_extraction >= @current_date
+    AND features2.date_of_extraction >= @current_date
 ;

@@ -23,6 +23,8 @@ FROM `moocdb`.user_longitudinal_feature_values AS features,
 WHERE features.user_id = features2.user_id
 	AND features.longitudinal_feature_week = features2.longitudinal_feature_week
 	AND features.longitudinal_feature_id = 8
+    AND features.date_of_extraction >= @current_date
 	AND features2.longitudinal_feature_id = 6
+    AND features2.date_of_extraction >= @current_date
 ;
 

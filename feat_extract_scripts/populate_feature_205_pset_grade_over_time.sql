@@ -13,9 +13,9 @@ BEGIN
         INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id, user_id, longitudinal_feature_week, longitudinal_feature_value,date_of_extraction)
         SELECT 205, d1.user_id, x AS week, d1.longitudinal_feature_value -
             (SELECT AVG(longitudinal_feature_value)
-            FROM `moocdb`.user_longitudinal_feature_values AS d2 WHERE longitudinal_feature_id = 204 AND longitudinal_feature_week < x AND d1.user_id = d2.user_id),
+            FROM `moocdb`.user_longitudinal_feature_values AS d2 WHERE longitudinal_feature_id = 204 AND longitudinal_feature_week < x AND d1.user_id = d2.user_id AND date_of_extraction >= @current_date;),
             @current_date
-        FROM `moocdb`.user_longitudinal_feature_values AS d1 WHERE longitudinal_feature_id = 204 AND longitudinal_feature_week = x;
+        FROM `moocdb`.user_longitudinal_feature_values AS d1 WHERE longitudinal_feature_id = 204 AND longitudinal_feature_week = x AND date_of_extraction >= @current_date;
         SET  x = x + 1;
     END WHILE;
 END;

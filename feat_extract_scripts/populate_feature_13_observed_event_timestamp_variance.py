@@ -18,7 +18,7 @@ import os
 import time as t
 from sql_functions import *
 #make this as high as possible until MySQL quits on you
-BLOCK_SIZE = 50
+BLOCK_SIZE = 1000
 
 
 def main(conn, conn2, dbName,startDate, currentDate, numWeeks, parent_conn = None):
@@ -35,7 +35,7 @@ def main(conn, conn2, dbName,startDate, currentDate, numWeeks, parent_conn = Non
              u.user_dropout_week IS NOT NULL
              AND
              observed_events.validity = 1
-             AND FLOOR((UNIX_TIMESTAMP(submissions.submission_timestamp)
+             AND FLOOR((UNIX_TIMESTAMP(observed_events.observed_event_timestamp)
                 - UNIX_TIMESTAMP('%s')) / (3600 * 24 * 7)) <= '%s'
              GROUP BY observed_events.user_id, week, observed_event_timestamp
              ASC LIMIT 1
@@ -73,7 +73,7 @@ def main(conn, conn2, dbName,startDate, currentDate, numWeeks, parent_conn = Non
              u.user_dropout_week IS NOT NULL
              AND
              observed_events.validity = 1
-             AND FLOOR((UNIX_TIMESTAMP(submissions.submission_timestamp)
+             AND FLOOR((UNIX_TIMESTAMP(observed_events.observed_event_timestamp)
                 - UNIX_TIMESTAMP('%s')) / (3600 * 24 * 7)) <= '%s'
              GROUP BY observed_events.user_id, week, observed_event_timestamp
              ASC

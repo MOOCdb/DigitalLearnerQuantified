@@ -3,7 +3,7 @@
 -- Feature 209- Percentage of total submissions that were correct (feature 208 / feature 7)
 -- Must have run populate_feature_208 and populate_feature_7 first!
 
-set @current_date = cast('0000-00-00 00:00:00' as datetime);
+set @current_date = cast('CURRENT_DATE_PLACEHOLDER' as datetime);
 
 INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id, user_id, longitudinal_feature_week, longitudinal_feature_value,date_of_extraction)
 

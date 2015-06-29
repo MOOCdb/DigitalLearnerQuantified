@@ -3,7 +3,7 @@
 -- Feature 204: Pset Grade: Number of homework problems correct in a week's problems / number of homework problems in a week
 -- Meant to be run in order to run after problems_populate_module_week.sql
 
-set @current_date = cast('0000-00-00 00:00:00' as datetime);
+set @current_date = cast('CURRENT_DATE_PLACEHOLDER' as datetime);
 
 INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id, user_id, longitudinal_feature_week, longitudinal_feature_value,date_of_extraction)
 

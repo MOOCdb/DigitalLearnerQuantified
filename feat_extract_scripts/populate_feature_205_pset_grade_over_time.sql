@@ -8,7 +8,7 @@ CREATE PROCEDURE Populate_205()
 BEGIN
     DECLARE x  INT;
     SET x = 1;
-    SET @current_date = CAST('0000-00-00 00:00:00' AS DATETIME);
+    set @current_date = cast('CURRENT_DATE_PLACEHOLDER' as datetime);
     WHILE x  <= 13 DO
         INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id, user_id, longitudinal_feature_week, longitudinal_feature_value,date_of_extraction)
         SELECT 205, d1.user_id, x AS week, d1.longitudinal_feature_value -

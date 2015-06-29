@@ -13,7 +13,9 @@
 -- Modified by Ben Schreck (6/1/15) to make faster and make sure to not include
 -- users with null dropout weeks
 
-set @current_date = cast('0000-00-00 00:00:00' as datetime);
+set @current_date = cast('CURRENT_DATE_PLACEHOLDER' as datetime);
+set @num_weeks = NUM_WEEKS_PLACEHOLDER;
+set @start_date = 'START_DATE_PLACEHOLDER'
 
 INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id,
                                                     user_id,
@@ -24,7 +26,7 @@ INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id,
 SELECT
 	302,
 	a.user_id,
-	FLOOR((UNIX_TIMESTAMP(a.observed_event_timestamp) - UNIX_TIMESTAMP('2012-03-05 12:00:00')) / (3600 * 24 * 7)) AS week,
+	FLOOR((UNIX_TIMESTAMP(a.observed_event_timestamp) - UNIX_TIMESTAMP(@start_date)) / (3600 * 24 * 7)) AS week,
 	AVG((UNIX_TIMESTAMP(a.observed_event_timestamp) - UNIX_TIMESTAMP(b.resource_release_timestamp))) AS avg_reacting_time,
     @current_date
 FROM

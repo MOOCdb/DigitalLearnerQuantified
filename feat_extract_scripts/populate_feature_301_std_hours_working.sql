@@ -9,7 +9,8 @@
 -- would you like to be cited, and if so, how?
 --
 -- Modified by Colin Taylor (3/5/2014) to insert into database with feature number 301
-SET @current_date = CAST('0000-00-00 00:00:00' AS DATETIME);
+set @current_date = cast('CURRENT_DATE_PLACEHOLDER' as datetime);
+set @start_date = 'START_DATE_PLACEHOLDER'
 
 INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id,
                                                     user_id,
@@ -19,7 +20,7 @@ INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id,
 SELECT
     301,
 	user_id,
-	FLOOR((UNIX_TIMESTAMP(event_timestamp) - UNIX_TIMESTAMP('2012-03-05 12:00:00')) / (3600 * 24 * 7)) AS week,
+	FLOOR((UNIX_TIMESTAMP(event_timestamp) - UNIX_TIMESTAMP(@start_date)) / (3600 * 24 * 7)) AS week,
 	std(hours) AS std_hours_working,
     @current_date
 

@@ -3,7 +3,8 @@
 -- Feature 206: Lab Grade: Number of lab problems correct in a week's problems / number of lab problems in a week
 -- Meant to be run in order to run after problem_populate_module_week.sql
 
-set @current_date = cast('0000-00-00 00:00:00' as datetime);
+set @current_date = cast('CURRENT_DATE_PLACEHOLDER' as datetime);
+set @num_weeks = NUM_WEEKS_PLACEHOLDER;
 
 INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id, user_id, longitudinal_feature_week, longitudinal_feature_value,date_of_extraction)
 
@@ -24,5 +25,5 @@ AND problems.problem_type_id = 3
 AND assessments.assessment_grade = 1
 AND submissions.validity = 1
 GROUP BY submissions.user_id, problems.problem_week
-HAVING week < 15
+HAVING week < @num_weeks
 AND week >= 0;

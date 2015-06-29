@@ -21,7 +21,7 @@ from sql_functions import *
 BLOCK_SIZE = 50
 
 
-def main(conn, conn2, dbName,startDate, currentDate, parent_conn = None):
+def main(conn, conn2, dbName,startDate, currentDate, numWeeks, parent_conn = None):
     cursor2 = conn2.cursor()
 
     first_row = '''SELECT observed_events.user_id,
@@ -35,9 +35,11 @@ def main(conn, conn2, dbName,startDate, currentDate, parent_conn = None):
              u.user_dropout_week IS NOT NULL
              AND
              observed_events.validity = 1
+             AND FLOOR((UNIX_TIMESTAMP(submissions.submission_timestamp)
+                - UNIX_TIMESTAMP('%s')) / (3600 * 24 * 7)) <= '%s'
              GROUP BY observed_events.user_id, week, observed_event_timestamp
              ASC LIMIT 1
-          ''' % (startDate, dbName, dbName)
+          ''' % (startDate, dbName, dbName, startDate, numWeeks)
 
     cursor2.execute(first_row)
     first = cursor2.fetchone()
@@ -71,9 +73,11 @@ def main(conn, conn2, dbName,startDate, currentDate, parent_conn = None):
              u.user_dropout_week IS NOT NULL
              AND
              observed_events.validity = 1
+             AND FLOOR((UNIX_TIMESTAMP(submissions.submission_timestamp)
+                - UNIX_TIMESTAMP('%s')) / (3600 * 24 * 7)) <= '%s'
              GROUP BY observed_events.user_id, week, observed_event_timestamp
              ASC
-          ''' % (startDate, dbName, dbName)
+          ''' % (startDate, dbName, dbName, startDate, numWeeks)
 
 
 

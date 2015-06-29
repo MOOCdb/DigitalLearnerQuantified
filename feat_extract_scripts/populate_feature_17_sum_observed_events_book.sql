@@ -3,7 +3,9 @@
 -- @author: Franck for ALFA, MIT lab: franck.dernoncourt@gmail.com
 -- Feature 17: Total time spent on all resources - book only - during the week
 
-set @current_date = cast('0000-00-00 00:00:00' as datetime);
+set @current_date = cast('CURRENT_DATE_PLACEHOLDER' as datetime);
+set @num_weeks = NUM_WEEKS_PLACEHOLDER;
+set @start_date = 'START_DATE_PLACEHOLDER'
 
 INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id, user_id, longitudinal_feature_week, longitudinal_feature_value,date_of_extraction)
 
@@ -11,7 +13,7 @@ INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id, u
 SELECT 17,
 	users.user_id,
 	FLOOR((UNIX_TIMESTAMP(observed_events.observed_event_timestamp)
-			- UNIX_TIMESTAMP('2012-03-05 12:00:00')) / (3600 * 24 * 7)) AS week,
+			- UNIX_TIMESTAMP(@start_date)) / (3600 * 24 * 7)) AS week,
 	SUM(observed_events.observed_event_duration),
     @current_date
 FROM `moocdb`.users AS users
@@ -27,10 +29,10 @@ WHERE users.user_dropout_week IS NOT NULL
 	-- AND users.user_id < 100
 	AND resource_types.resource_type_id = 3
 	AND FLOOR((UNIX_TIMESTAMP(observed_events.observed_event_timestamp)
-			- UNIX_TIMESTAMP('2012-03-05 12:00:00')) / (3600 * 24 * 7)) < 15
+			- UNIX_TIMESTAMP(@start_date)) / (3600 * 24 * 7)) <= @num_weeks
     AND observed_events.validity = 1
 GROUP BY users.user_id, week
-HAVING week < 15
+HAVING week < @num_weeks
 AND week >= 0
 ;
 

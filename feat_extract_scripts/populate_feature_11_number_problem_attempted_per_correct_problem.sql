@@ -8,7 +8,7 @@
 -- Takes 10 seconds to execute
 -- ALTER TABLE `moocdb`.`user_longitudinal_feature_values`
 -- ADD INDEX `user_week_idx` (`user_id` ASC, `dropout_feature_value_week` ASC) ;
-set @current_date = cast('0000-00-00 00:00:00' as datetime);
+set @current_date = cast('CURRENT_DATE_PLACEHOLDER' as datetime);
 
 INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id, user_id, longitudinal_feature_week, longitudinal_feature_value,date_of_extraction)
 

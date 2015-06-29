@@ -3,7 +3,7 @@
 -- @author: Franck for ALFA, MIT lab: franck.dernoncourt@gmail.com
 -- Feature 112: difference of Feature 12 (number of problem attempted (feature 6) / number of correct problems (feature 8))
 -- 130667 rows
-set @current_date = cast('0000-00-00 00:00:00' as datetime);
+set @current_date = cast('CURRENT_DATE_PLACEHOLDER' as datetime);
 
 INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id, user_id, longitudinal_feature_week, longitudinal_feature_value,date_of_extraction)
 

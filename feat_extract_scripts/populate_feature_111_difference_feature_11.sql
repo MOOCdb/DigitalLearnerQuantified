@@ -4,7 +4,7 @@
 -- Feature 111: difference of Feature 11 (number of problem attempted (feature 6) / number of correct problems (feature 8))
 -- 126339 rows
 
-set @current_date = cast('0000-00-00 00:00:00' as datetime);
+set @current_date = cast('CURRENT_DATE_PLACEHOLDER' as datetime);
 
 INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id, user_id, longitudinal_feature_week, longitudinal_feature_value,date_of_extraction)
 

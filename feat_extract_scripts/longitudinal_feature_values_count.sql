@@ -10,7 +10,7 @@ FROM moocdb.user_longitudinal_feature_values AS features
  INNER JOIN moocdb.users AS users
  ON users.user_id = features.user_id
 WHERE users.user_dropout_week > 2 AND
-    features.date_of_extraction = @date_of_extraction
+    features.date_of_extraction = @current_date
 GROUP BY features.longitudinal_feature_id
 ORDER BY features.longitudinal_feature_id ASC
 ;

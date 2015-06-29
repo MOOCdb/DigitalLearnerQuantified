@@ -74,7 +74,7 @@ featureDict = {
          'default': -1,
          'dependencies':[111],
          'desc': 'none'},
-     12: {'name': "average_time_to_sovle_problem",
+     12: {'name': "average_time_to_solve_problem",
          'filename': 'populate_feature_12_average_time_to_solve_problem',
          'extension': '.sql',
          'default': -1,

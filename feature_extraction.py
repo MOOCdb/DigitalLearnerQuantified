@@ -3,7 +3,7 @@ from sql_functions import *
 #list of features:
 from feature_dict import *
 
-def extractFeature(dbName, userName, passwd, host, port, startDate, currentDate, dirName,
+def extractFeature(dbName, userName, passwd, host, port, startDate, currentDate, numWeeks, dirName,
                     featureID, timeout):
     begin = time.time()
     if featureID not in featureDict:
@@ -17,8 +17,9 @@ def extractFeature(dbName, userName, passwd, host, port, startDate, currentDate,
         featureFile = dirName+'/'+feature['filename']+feature['extension']
         this_file = os.path.dirname(os.path.realpath(__file__))
         featureFile = this_file+'/'+featureFile
-        toBeReplaced = ['moocdb', '2012-03-05 12:00:00', '0000-00-00 00:00:00']
-        toReplace = [dbName, startDate, currentDate]
+        toBeReplaced = ['moocdb', 'START_DATE_PLACEHOLDER',
+                'CURRENT_DATE_PLACEHOLDER', 'NUM_WEEKS_PLACEHOLDER']
+        toReplace = [dbName, startDate, currentDate, numWeeks]
         success = runSQLFile(conn, featureFile, dbName, toBeReplaced,
                 toReplace, timeout)
         closeSQLConnection(conn)
@@ -27,7 +28,7 @@ def extractFeature(dbName, userName, passwd, host, port, startDate, currentDate,
         conn2 = openSQLConnectionP(dbName, userName, passwd, host, port)
         featureFile = dirName+'/'+feature['filename']
         success = runPythonFile(conn, conn2, dirName, feature['filename'],
-                dbName, startDate, currentDate, timeout)
+                dbName, startDate, currentDate, numWeeks, timeout)
         closeSQLConnection(conn)
         closeSQLConnection(conn2)
     end = time.time()
@@ -37,18 +38,15 @@ def extractFeature(dbName, userName, passwd, host, port, startDate, currentDate,
         return False
     else:
         return True
-#import getpass
-#extractFeature('201x_2013_spring', 'sebboyer', getpass.getpass(),
-#'alfa6.csail.mit.edu', 3306, '2013-04-09 00:00:00', '2015-06-22 16:00:00',
-#    'feat_extract_scripts', 112, 1800)
+
 
 def extractAllFeatures(dbName, userName, passwd, host, port, startDate,
-                        currentDate,dirName, featuresToSkip, timeout):
+                        currentDate,numWeeks, dirName, featuresToSkip, timeout):
 
     pass
     for feature in featuresFromFeaturesToSkip(featuresToSkip):
         success = extractFeature(dbName, userName, passwd, host, port, startDate,
-                                currentDate, dirName, feature, timeout)
+                                currentDate, numWeeks, dirName, feature, timeout)
         if not success:
             cont = ""
             while not (cont == "y" or cont == "n"):

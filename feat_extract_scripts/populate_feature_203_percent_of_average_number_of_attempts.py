@@ -13,7 +13,7 @@ def main(conn, conn2, dbName, startDate,currentDate,parent_conn = None):
 
     sql = '''SELECT user_id, longitudinal_feature_week,longitudinal_feature_value
             FROM `%s`.user_longitudinal_feature_values
-            WHERE longitudinal_feature_id = 9;
+            WHERE longitudinal_feature_id = 9
             AND date_of_extraction >= @current_date
             ''' % (dbName)
 

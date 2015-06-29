@@ -5,7 +5,7 @@
 -- 196966 rows
 set @current_date = cast('CURRENT_DATE_PLACEHOLDER' as datetime);
 set @num_weeks = NUM_WEEKS_PLACEHOLDER;
-set @start_date = 'START_DATE_PLACEHOLDER'
+set @start_date = 'START_DATE_PLACEHOLDER';
 
 INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id, user_id, longitudinal_feature_week, longitudinal_feature_value,date_of_extraction)
 

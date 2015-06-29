@@ -10,7 +10,7 @@
 --
 -- Modified by Colin Taylor (3/5/2014) to insert into database with feature number 301
 set @current_date = cast('CURRENT_DATE_PLACEHOLDER' as datetime);
-set @start_date = 'START_DATE_PLACEHOLDER'
+set @start_date = 'START_DATE_PLACEHOLDER';
 
 INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id,
                                                     user_id,

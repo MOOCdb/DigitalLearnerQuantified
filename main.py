@@ -39,6 +39,8 @@ def main(dbName=None, userName=None, passwd=None, dbHost=None,
         currentDateObject = datetime.datetime.now()
         currentDate = currentDateObject.isoformat()
         print "currentDate: ",currentDate
+    if not numWeeks:
+        numWeeks = 15
     if not features_to_skip:
         ##3,4,5,14,103,104,105,201,301 depend on collaborations table- not populated yet
         features_to_skip = [3,4,5,14, 103,104,105, 201, 301,302]
@@ -50,11 +52,14 @@ def main(dbName=None, userName=None, passwd=None, dbHost=None,
         run_preprocess(dbName, userName, passwd, dbHost, dbPort, startDate, currentDate)
 
     run_feature_extraction(dbName, userName, passwd, dbHost,
-            dbPort,startDate,currentDate, features_to_skip, timeout)
+            dbPort,startDate,currentDate,numWeeks,features_to_skip, timeout)
 
 if __name__ == "__main__":
-    main(dbName='6002x_spring_2013', timeout = 600, preprocess = True,
-            startDate = '2013-04-09 00:00:00',
-        features_to_skip = [4,  104,105, 17,204,205,206,207,302]
-        #features_to_skip = [3,4,5,14,17,103,104,105,201,204,205,206,207,301,302],
-            )
+    main(dbName            = '6002x_spring_2013',
+         timeout           = 600,
+         preprocess        = True,
+         startDate         = '2013-04-09 00:00:00',
+         numWeeks          = 15,
+         features_to_skip  = [4,104,105,17,204,205,206,207,302]
+         #features_to_skip = [3,4,5,14,17,103,104,105,201,204,205,206,207,301,302]
+        )

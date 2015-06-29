@@ -20,7 +20,6 @@ def preprocess(dbName, userName, passwd, host, port, dirName, startDate, current
          #['moocdb'],
          #[dbName]
         #],
-        ##TODO: MAKE REPEATABLE:
         #[
          #'populate_longitudinal_features.py',
          #[],
@@ -48,7 +47,7 @@ def preprocess(dbName, userName, passwd, host, port, dirName, startDate, current
 
         [
          'users_populate_dropout_week.sql',
-         ['2012-03-05 12:00:00','moocdb'],
+         ['START_DATE_PLACEHOLDER','moocdb'],
          [startDate,dbName]
         ]
 

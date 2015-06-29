@@ -141,7 +141,7 @@ def runSQLFile(conn, fileName, dbName, toBeReplaced, toReplace, timeout):
         return False
 
 def runPythonFile(conn, conn2, module, fileName, dbName, startDate,
-        currentDate, timeout = 100000):
+        currentDate, numWeeks, timeout = 100000):
     try:
         imported = getattr(__import__(module, fromlist=[fileName]), fileName)
     except:
@@ -150,7 +150,8 @@ def runPythonFile(conn, conn2, module, fileName, dbName, startDate,
     try:
         conn1_rcv, conn2_send = multiprocessing.Pipe(False)
         subproc = multiprocessing.Process(target=imported.main,args=(conn,
-                                        conn2, dbName, startDate, currentDate,conn2_send))
+                                        conn2, dbName, startDate,
+                                        currentDate,numWeeks, conn2_send))
         subproc.start()
         subproc.join(timeout)
         if conn1_rcv.poll():

@@ -9,7 +9,9 @@ from sql_functions import *
 from  scipy.stats import percentileofscore
 BLOCK_SIZE=50
 
-def main(conn, conn2, dbName, startDate, currentDate, parent_conn = None):
+def main(conn, conn2, dbName, startDate, currentDate, numWeeks, parent_conn = None):
+    #numWeeks doesn't do anything here, but python scripts are automatically
+    #called so we need the arg
     cursor = conn.cursor()
 
 

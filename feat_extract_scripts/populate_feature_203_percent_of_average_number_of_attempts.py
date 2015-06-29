@@ -7,7 +7,9 @@ Requires that populate_feature_9_average_number_of_attempts.sql has already been
 from sql_functions import *
 BLOCK_SIZE=50
 
-def main(conn, conn2, dbName, startDate,currentDate,parent_conn = None):
+def main(conn, conn2, dbName, startDate,currentDate,numWeeks, parent_conn = None):
+    #numWeeks doesn't do anything here, but python scripts are automatically
+    #called so we need the arg
     cursor = conn.cursor()
     cursor2 = conn2.cursor()
 

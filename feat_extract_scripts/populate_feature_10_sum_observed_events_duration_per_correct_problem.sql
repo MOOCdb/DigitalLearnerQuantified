@@ -6,8 +6,8 @@
 
 -- You need to create this index, otherwise it will take for ever
 -- Takes 10 seconds to execute
--- ALTER TABLE `moocdb`.`dropout_feature_values`
--- ADD INDEX `user_week_idx` (`user_id` ASC, `dropout_feature_value_week` ASC) ;
+-- ALTER TABLE `moocdb`.`user_longitudinal_feature_values`
+-- ADD INDEX `user_week_idx` (`user_id` ASC, `longitudinal_feature_week` ASC) ;
 
 set @current_date = cast('CURRENT_DATE_PLACEHOLDER' as datetime);
 

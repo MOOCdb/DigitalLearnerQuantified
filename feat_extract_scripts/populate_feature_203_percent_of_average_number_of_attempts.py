@@ -5,7 +5,7 @@ Feature 203- A student's average number of attempts as compared with other stude
 Requires that populate_feature_9_average_number_of_attempts.sql has already been run!
 '''
 from sql_functions import *
-BLOCK_SIZE=50
+BLOCK_SIZE=1000
 
 def main(conn, conn2, dbName, startDate,currentDate,numWeeks, parent_conn = None):
     #numWeeks doesn't do anything here, but python scripts are automatically

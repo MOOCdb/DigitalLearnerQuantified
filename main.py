@@ -68,12 +68,13 @@ if __name__ == "__main__":
         1473x_2013_spring: start date: 2/12/2013 (14 weeks)
         3091x_2012_fall: start date: 10/9/2012 (14 weeks)
     '''
-    main(dbName            = '3091x_2012_fall',
+    main(dbName            = '6002x_fall_2012',
          timeout           = 600,
-         preprocess        = True,
-         startDate         = '2012-10-09 00:00:00',
-         numWeeks          = 14,
+         preprocess        = False  ,  
+         startDate         = '2012-09-05 00:00:00',
+         numWeeks          = 15,
          #features_to_skip  = [4,104,105,17,201,204,205,206,207,302] # with collaborations
-         features_to_skip =  [3,4,5,14,17,103,104,105,201,204,205,206,207,301,302] # without collaborations
+         #features_to_skip =  [3,4,5,14,17,103,104,105,201,204,205,206,207,301,302] # without collaborations
          #features_to_skip=[1,2,3,4,5,6,7,8,10,11,12,13,14,15,16,17,18,103,104,105,109,110,111,112,201,204,205,206,207,208,210,301,302]
+         features_to_skip =  list(set([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,103,104,105,109,110,111,112,201,202,203,204,205,206,207,208,209,210,301,302])-set([13,202,203,208,209,210,301]))
         )

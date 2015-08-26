@@ -17,15 +17,15 @@ INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id, u
 SELECT 10,
 	user_longitudinal_feature_values.user_id,
 	user_longitudinal_feature_values.longitudinal_feature_week,
-	user_longitudinal_feature_values2.longitudinal_feature_value  / user_longitudinal_feature_values.longitudinal_feature_value,
+	CASE WHEN user_longitudinal_feature_values.longitudinal_feature_value=0 then 99999 else user_longitudinal_feature_values2.longitudinal_feature_value  / user_longitudinal_feature_values.longitudinal_feature_value end,
   @current_date
 FROM `moocdb`.user_longitudinal_feature_values AS user_longitudinal_feature_values,
 	`moocdb`.user_longitudinal_feature_values AS user_longitudinal_feature_values2
 WHERE user_longitudinal_feature_values.user_id = user_longitudinal_feature_values2.user_id
 	AND user_longitudinal_feature_values.longitudinal_feature_week = user_longitudinal_feature_values2.longitudinal_feature_week
 	AND user_longitudinal_feature_values.longitudinal_feature_id = 8
-    AND user_longitudinal_feature_values.date_of_extraction >= @current_date
+    #AND user_longitudinal_feature_values.date_of_extraction >= @current_date
     AND user_longitudinal_feature_values2.longitudinal_feature_id = 2
-    AND user_longitudinal_feature_values2.date_of_extraction >= @current_date
+    #AND user_longitudinal_feature_values2.date_of_extraction >= @current_date
 ;
 

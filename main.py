@@ -73,7 +73,7 @@ if __name__ == "__main__":
          preprocess        = True,
          startDate         = '2012-10-09 00:00:00',
          numWeeks          = 14,
-         #features_to_skip  = [4,104,105,17,201,204,205,206,207,302] # with collaborations
-         features_to_skip =  [3,4,5,14,17,103,104,105,201,204,205,206,207,301,302] # without collaborations
+         features_to_skip  = [4,104,105,17,201,204,205,206,207,302] # with collaborations
+         #features_to_skip =  [3,4,5,14,17,103,104,105,201,204,205,206,207,301,302] # without collaborations
          #features_to_skip=[1,2,3,4,5,6,7,8,10,11,12,13,14,15,16,17,18,103,104,105,109,110,111,112,201,204,205,206,207,208,210,301,302]
         )

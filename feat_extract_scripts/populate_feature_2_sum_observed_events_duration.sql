@@ -21,7 +21,7 @@ INNER JOIN `moocdb`.observed_events AS observed_events
 WHERE users.user_dropout_week IS NOT NULL
 	-- AND users.user_id < 100
 	AND FLOOR((UNIX_TIMESTAMP(observed_events.observed_event_timestamp)
-			- UNIX_TIMESTAMP(@start_date)) / (3600 * 24 * 7)) <= @num_weeks
+			- UNIX_TIMESTAMP(@start_date)) / (3600 * 24 * 7)) < @num_weeks
     AND observed_events.validity = 1
 GROUP BY users.user_id, week
 HAVING week < @num_weeks

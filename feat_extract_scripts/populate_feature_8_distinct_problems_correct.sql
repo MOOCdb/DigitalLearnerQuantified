@@ -24,7 +24,7 @@ WHERE users.user_dropout_week IS NOT NULL
 	AND assessments.assessment_grade = 1
 	-- AND users.user_id < 100
 	AND FLOOR((UNIX_TIMESTAMP(submissions.submission_timestamp)
-			- UNIX_TIMESTAMP(@start_date)) / (3600 * 24 * 7)) <= @num_weeks
+			- UNIX_TIMESTAMP(@start_date)) / (3600 * 24 * 7)) < @num_weeks
   AND submissions.validity = 1
 GROUP BY users.user_id, week
 HAVING week < @num_weeks

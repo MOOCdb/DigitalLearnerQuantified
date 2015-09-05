@@ -23,7 +23,7 @@ INNER JOIN `moocdb`.collaborations AS collaborations
 WHERE users.user_dropout_week IS NOT NULL
 	AND collaborations.collaboration_type_id = 4
 	AND FLOOR((UNIX_TIMESTAMP(collaborations.collaboration_timestamp)
-			- UNIX_TIMESTAMP(@start_date)) / (3600 * 24 * 7)) <= @num_weeks
+			- UNIX_TIMESTAMP(@start_date)) / (3600 * 24 * 7)) < @num_weeks
 GROUP BY users.user_id, week
 HAVING week < @num_weeks
 AND week >= 0

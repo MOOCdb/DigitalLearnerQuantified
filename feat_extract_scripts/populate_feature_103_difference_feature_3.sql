@@ -23,8 +23,6 @@ WHERE
 	features.user_id = features2.user_id
 	-- 2 successive weeks
 	AND features.longitudinal_feature_week = features2.longitudinal_feature_week - 1
-	-- we need compute the percentage of change if we had at least 5 posts in the previous week
-	AND features.longitudinal_feature_value > 5
 	-- we are only interested in feature 3 (forum posts)
 	AND features.longitudinal_feature_id = 3
 	AND features2.longitudinal_feature_id = 3

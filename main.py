@@ -33,7 +33,7 @@ def main(dbName=None, userName=None, passwd=None, dbHost=None,
     if not passwd:
         passwd = getpass.getpass()
     if not userName:
-        userName = 'sebboyer'
+        userName = 'beng'
     if not startDate:
         startDate='2013-04-09 00:00:00'
     if not currentDate:
@@ -41,10 +41,10 @@ def main(dbName=None, userName=None, passwd=None, dbHost=None,
         currentDate = currentDateObject.isoformat()
         print "currentDate: ",currentDate
     if not numWeeks:
-        numWeeks = 15
+        numWeeks = 14
     if not features_to_skip:
         ##3,4,5,14,103,104,105,201,301 depend on collaborations table- not populated yet
-        features_to_skip = [3,4,5,14, 103,104,105, 201, 301,302]
+        features_to_skip = [4,14,104,105,201,204,205,206,207,302]
     if not timeout:
         ##set how long you're willing to wait for a feature (in seconds)
         timeout = 1800
@@ -61,20 +61,21 @@ if __name__ == "__main__":
         3091x_2013_spring: start date: 2/5/2013 (19 weeks)
         6002x_spring_2013: start date: 3/3/2013 (17 weeks)
         6002x_fall_2012: start date: 9/5/2012 (15 weeks)
-
-    without:
         201x_2013_spring: start date: 4/15/2013 (15 weeks)
         203x_2013_3t: start date: 10/28/2013 (7 weeks)
-        1473x_2013_spring: start date: 2/12/2013 (14 weeks)
         3091x_2012_fall: start date: 10/9/2012 (14 weeks)
+
+    without:
+        1473x_2013_spring: start date: 2/12/2013 (14 weeks)
     '''
     main(dbName            = '6002x_fall_2012',
-         timeout           = 600,
+         timeout           = 1000,
          preprocess        = False  ,  
          startDate         = '2012-09-05 00:00:00',
-         numWeeks          = 15,
-         #features_to_skip  = [4,104,105,17,201,204,205,206,207,302] # with collaborations
+         numWeeks          = 14,
+         #orginally we skipped 17, but i'm not sure why. The book resource seems to be populated
+         features_to_skip  = [4,14,104,105,201,204,205,206,207,302] # with collaborations
          #features_to_skip =  [3,4,5,14,17,103,104,105,201,204,205,206,207,301,302] # without collaborations
          #features_to_skip=[1,2,3,4,5,6,7,8,10,11,12,13,14,15,16,17,18,103,104,105,109,110,111,112,201,204,205,206,207,208,210,301,302]
-         features_to_skip =  list(set([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,103,104,105,109,110,111,112,201,202,203,204,205,206,207,208,209,210,301,302])-set([13,202,203,208,209,210,301]))
+         #features_to_skip =  list(set([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,103,104,105,109,110,111,112,201,202,203,204,205,206,207,208,209,210,301,302])-set([13,202,203,208,209,210,301]))
         )

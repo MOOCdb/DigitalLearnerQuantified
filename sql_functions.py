@@ -20,7 +20,6 @@ def openSQLConnectionP(databaseName, userName,passwd, host, port):
                            user=userName, passwd=passwd, db=databaseName,
                            cursorclass=cursors.SSCursor)
 
-
 def closeSQLConnection(connection):
     connection.close()
 
@@ -260,4 +259,5 @@ def RatioOfUsers_CountryRanking():  #SCRIPTS EXAMPLE
     print country_names
 
 
-
+if __name__ == '__main__':
+    tempCommand()

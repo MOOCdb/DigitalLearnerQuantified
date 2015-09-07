@@ -16,15 +16,15 @@ INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id, u
 SELECT 11,
 	features.user_id,
 	features.longitudinal_feature_week,
-	features2.longitudinal_feature_value  / features.longitudinal_feature_value,
+	CASE WHEN features.longitudinal_feature_value=0  then 0 else features2.longitudinal_feature_value  / features.longitudinal_feature_value end,
   @current_date
 FROM `moocdb`.user_longitudinal_feature_values AS features,
 	`moocdb`.user_longitudinal_feature_values AS features2
 WHERE features.user_id = features2.user_id
 	AND features.longitudinal_feature_week = features2.longitudinal_feature_week
 	AND features.longitudinal_feature_id = 8
-    AND features.date_of_extraction >= @current_date
+    #AND features.date_of_extraction >= @current_date
 	AND features2.longitudinal_feature_id = 6
-    AND features2.date_of_extraction >= @current_date
+    #AND features2.date_of_extraction >= @current_date
 ;
 

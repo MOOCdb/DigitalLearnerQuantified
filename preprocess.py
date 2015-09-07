@@ -39,11 +39,11 @@ def preprocess(dbName, userName, passwd, host, port, dirName, startDate, current
         #],
 
 
-        #[
-         #'create_user_longitudinal_feature_values.sql',
-         #['moocdb'],
-         #[dbName]
-        #],
+        [
+         'create_user_longitudinal_feature_values.sql',
+         ['moocdb'],
+         [dbName]
+        ],
 
         [
          'users_populate_dropout_week.sql',

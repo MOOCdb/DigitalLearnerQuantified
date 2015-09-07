@@ -11,7 +11,7 @@ INSERT INTO `moocdb`.user_longitudinal_feature_values(longitudinal_feature_id, u
 SELECT 209,
 	features.user_id,
 	features.longitudinal_feature_week,
-	features2.longitudinal_feature_value  / features.longitudinal_feature_value,
+	CASE WHEN features.longitudinal_feature_value=0 then 0 else features2.longitudinal_feature_value  / features.longitudinal_feature_value end,
     @current_date
 FROM `moocdb`.user_longitudinal_feature_values AS features,
 	`moocdb`.user_longitudinal_feature_values AS features2

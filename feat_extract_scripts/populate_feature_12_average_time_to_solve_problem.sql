@@ -13,7 +13,7 @@ SELECT 12,
 	users.user_id,
 	FLOOR((UNIX_TIMESTAMP(submissions.submission_timestamp)
 			- UNIX_TIMESTAMP(@start_date)) / (3600 * 24 * 7)) AS week,
-	AVG(submissions.submission_attempt_number - submissions3.submission_attempt_number),
+	AVG(submissions.submission_timestamp - submissions3.submission_timestamp),
   @current_date
 FROM `moocdb`.users AS users
 INNER JOIN `moocdb`.submissions AS submissions
@@ -36,7 +36,7 @@ WHERE users.user_dropout_week IS NOT NULL
 		)
 	-- AND users.user_id <  1000
 	AND FLOOR((UNIX_TIMESTAMP(submissions.submission_timestamp)
-			- UNIX_TIMESTAMP(@start_date)) / (3600 * 24 * 7)) <= @num_weeks
+			- UNIX_TIMESTAMP(@start_date)) / (3600 * 24 * 7)) < @num_weeks
   AND submissions.validity = 1
 
 GROUP BY users.user_id, week

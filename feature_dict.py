@@ -241,7 +241,8 @@ def skippedDependencies(featuresToSkip):
         dependencies = returnFeatures()[f]['dependencies']
         for d in dependencies:
             if d not in sd:
-                sd.add(d)
+                # sd.add(d)
+                print "Trying a dependencies that might have been skipped"
     return sd
 
 def featuresFromFeaturesToSkip(featuresToSkip):

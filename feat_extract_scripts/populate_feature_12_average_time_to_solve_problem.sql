@@ -13,7 +13,7 @@ SELECT 12,
 	users.user_id,
 	FLOOR((UNIX_TIMESTAMP(submissions.submission_timestamp)
 			- UNIX_TIMESTAMP(@start_date)) / (3600 * 24 * 7)) AS week,
-	AVG(submissions.submission_timestamp - submissions3.submission_timestamp),
+	AVG(submissions.submission_submission_attempt_number - submissions3.submission_attempt_number),
   @current_date
 FROM `moocdb`.users AS users
 INNER JOIN `moocdb`.submissions AS submissions

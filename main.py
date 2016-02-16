@@ -28,7 +28,7 @@ def main(dbName=None, userName=None, passwd=None, dbHost=None,
     if not dbPort:
         dbPort = 3306
     if not dbName:
-        dbName = '3091x_2013_spring'
+        dbName = '201x_2013_spring'
     print "database name: ", dbName
     if not passwd:
         passwd = getpass.getpass()
@@ -58,6 +58,7 @@ def main(dbName=None, userName=None, passwd=None, dbHost=None,
 if __name__ == "__main__":
     '''
     with collab:
+        These dates are month-day-year
         3091x_2013_spring: start date: 2/5/2013 (19 weeks)
         6002x_spring_2013: start date: 3/3/2013 (17 weeks)
         6002x_fall_2012: start date: 9/5/2012 (15 weeks)
@@ -68,10 +69,11 @@ if __name__ == "__main__":
     without:
         1473x_2013_spring: start date: 2/12/2013 (14 weeks)
     '''
-    main(dbName            = '6002x_fall_2012',
+    main(dbName            = '201x_2013_spring',
          timeout           = 1000,
          preprocess        = False  ,  
-         startDate         = '2012-09-05 00:00:00',
+         #This date is year-month-day
+         startDate         = '2013-04-15 00:00:00',
          numWeeks          = 14,
          #orginally we skipped 17, but i'm not sure why. The book resource seems to be populated
          features_to_skip  = [4,14,104,105,201,204,205,206,207,302] # with collaborations
